@@ -49,25 +49,11 @@ let showItems= (products) => {
         title.innerHTML=products[i].Name;
         body.appendChild(title);
         const IMG = new Image();
-<<<<<<< HEAD
         IMG.src = products[i].ProductPicUrl;
         IMG.setAttribute('class','img-fluid');
         IMG.setAttribute('id', productId);
         IMG.addEventListener('click',()=>{                   
             let queryString="?"+IMG.id;      
-=======
-        console.log(IMG);
-        IMG.src = products[i].ProductPicUrl;
-        IMG.setAttribute('class','img-fluid');
-        IMG.setAttribute('id', productId);
-        IMG.addEventListener('click',()=>{
-           /*  let image = IMG.src ;
-            console.log(image)  
-              let image_price=products[i].Price;
-              console.log(image_price); */
-                           
-            let queryString='?'+products[i].Name+'&'+IMG.src+'&'+products[i].Price+'  '+products[i].CurrencyCode+'&'+products[i].ProductId+'&'+products[i].Category+'&'+products[i].Description+'&'+products[i].Status+'&'+products[i].Quantity;      
->>>>>>> df61570592ae675386c7bae5239396fe09e776bd
             window.location.href="item.html"+queryString;
         })
         //for view item create queryString with the product id and pass it to the item.html page 
