@@ -1,1 +1,67 @@
-Hi from about
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>About us</title>
+    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+    <style>
+        a:hover{
+            text-decoration: none;
+            color: black;
+        }
+        a{
+            color: black;
+        }
+        #about-us{
+            background-image: url("about-us.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            height: 400px;
+           
+           
+        }
+  
+    </style>
+</head>
+<body>
+        <header>
+            
+                <center>
+                <ul class="list-unstyled my-5 ">
+                    <li class="list-inline-item"><a href="index.html">Home</a></li>  <!-- on click redirect to home page-->
+                    <li class="list-inline-item"><a href="About.html">About US</a></li><!-- on click redirect to about us page-->
+                    <li class="list-inline-item"><a href="contact_us.html">Contact US</a></li>
+                </ul>
+            </center>
+            </header>
+            <div id="about-us"></div>
+                 
+      <div class="container my-2">
+        <div class="row">
+            <div class="col-3 offset-3">
+                <button id="menna"class="btn btn-secondary">Menna Ossama</button>
+            </div>
+            <div class="col-3 offset-2">
+                    <button id="mohamed"class="btn btn-secondary">MOHAMED IBRAHIM </h1></button>
+                </div>
+            </div>
+              
+    </div>
+
+    <script>
+        
+        document.getElementById("menna").addEventListener('click',function(){
+            window.location.href="Menna_Osama.pdf";
+    
+        })
+        document.getElementById("mohamed").addEventListener('click',function(){
+            window.location.href="Mohamed.pdf";
+    
+        })
+    </script>
+    
+</body>
+</html>
