@@ -1,9 +1,12 @@
-
 let productId=1;
-let getItems= (showItems) => {
-
-const URL = 'https://gist.githubusercontent.com/a7med-hussien/7fc3e1cba6abf92460d69c0437ce8460/raw/da46abcedf99a3d2bef93a322641926ff60db3c3/products.json';
-
+let current=0;
+let getItems= (showItems,pageNo=1) => {
+document.getElementById('content').innerHTML="";
+if(pageNo==1)
+	current=0;
+	else
+		current=(pageNo-1)*41;
+	const URL = 'https://gist.githubusercontent.com/a7med-hussien/7fc3e1cba6abf92460d69c0437ce8460/raw/da46abcedf99a3d2bef93a322641926ff60db3c3/products.json';
     const METHOD = 'GET';
     let xhr = new XMLHttpRequest();
     xhr.open(METHOD, URL);
@@ -28,7 +31,7 @@ let showItems= (products) => {
    let Div =document.createElement('div');
    Div.setAttribute('class','row');
    content.appendChild(Div);
-    for(let i=0;i<products.length;i++){
+    for(let i=current;i<(current+41)&&i<products.length;i++){
         console.log("appended");
         if(productsNo==3){
          Div =document.createElement('div');
@@ -53,8 +56,7 @@ let showItems= (products) => {
         IMG.setAttribute('class','img-fluid');
         IMG.setAttribute('id', productId);
         IMG.addEventListener('click',()=>{                   
-           
-            let queryString='?'+products[i].Name+'&'+IMG.src+'&'+products[i].Price+'  '+products[i].CurrencyCode+'&'+products[i].ProductId+'&'+products[i].Category+'&'+products[i].Description+'&'+products[i].Status+'&'+products[i].Quantity;      
+        let queryString='?'+products[i].Name+'&'+IMG.src+'&'+products[i].Price+'  '+products[i].CurrencyCode+'&'+products[i].ProductId+'&'+products[i].Category+'&'+products[i].Description+'&'+products[i].Status+'&'+products[i].Quantity;      
      
             window.location.href="item.html"+queryString;
         })
@@ -78,5 +80,16 @@ let showItems= (products) => {
      
     }}
     getItems(showItems);
+    document.getElementById("page1").addEventListener('click',function(){
+        getItems(showItems,1);
+        });
+        document.getElementById("page2").addEventListener('click',function(){
+            getItems(showItems,2);
+        });
+        document.getElementById("page3").addEventListener('click',function(){
+            getItems(showItems,3);
+        });
+    
+    
     
     

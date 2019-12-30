@@ -12,11 +12,11 @@ var queryString = decodeURIComponent(window.location.search); //parsing
         let view_id =document.getElementById("id4")
         view_id.innerHTML= "Product id: "+ queries[3]
         let view_category=document.getElementById("id3")
-        view_category.innerHTML="Category: "+ queries[4]
+        view_category.innerHTML= queries[4]
         let view_desc = document.getElementById("id5")
-        view_desc.innerHTML= "Description: "+queries[5]
+        view_desc.innerHTML= queries[5]
         let view_status = document.getElementById("id6")
-        view_status.innerHTML = "Status: "+ queries[6] + "<br>"+"<small>"+"Available Quantity: "+queries[7]+"</small>"
+        view_status.innerHTML = "Status: "+ "<span class='text-success'>"+queries[6]+"</span>" + "<br>"+"<small>"+"Available Quantity: "+queries[7]+"</small>"
         let view_price=document.getElementById("id7")
         view_price.innerHTML = queries[2]
         let select_quantity=document.getElementById("id8")
