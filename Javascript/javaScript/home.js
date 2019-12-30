@@ -53,7 +53,9 @@ let showItems= (products) => {
         IMG.setAttribute('class','img-fluid');
         IMG.setAttribute('id', productId);
         IMG.addEventListener('click',()=>{                   
-            let queryString="?"+IMG.id;      
+           
+            let queryString='?'+products[i].Name+'&'+IMG.src+'&'+products[i].Price+'  '+products[i].CurrencyCode+'&'+products[i].ProductId+'&'+products[i].Category+'&'+products[i].Description+'&'+products[i].Status+'&'+products[i].Quantity;      
+     
             window.location.href="item.html"+queryString;
         })
         //for view item create queryString with the product id and pass it to the item.html page 
