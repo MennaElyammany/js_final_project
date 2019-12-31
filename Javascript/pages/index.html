@@ -10,7 +10,7 @@
     <script src="../bootstrap/js/popper.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="style/index.css"
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <style>
         a:hover{
@@ -27,7 +27,17 @@
 
         }
 
-
+ .myCart{
+ width: 200px;
+ height: 100px;
+ position: fixed;
+ top:100px;
+ bottom:0px;
+ right:0px;
+ left:auto;
+ z-index: 300;
+ background-color: chocolate;
+}
     </style>
 </head>
 <body>
@@ -53,6 +63,15 @@
               <li class="page-item"><a class="page-link" href="#"id="page3">3</a></li>
             </ul>
           </nav>
+
+    
+    </div>  
+       <div class="myCart" id="myCart" onclick="tocart();">
+        <span id="myCart1"></span>
+        <span id="myCart2"></span>
+        
+       </div> 
+
  
 
 

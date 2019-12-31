@@ -21,3 +21,32 @@ var queryString = decodeURIComponent(window.location.search); //parsing
         view_price.innerHTML = queries[2]
         let select_quantity=document.getElementById("id8")
         select_quantity.setAttribute('max',queries[7])
+
+    let add_tocart= document.getElementById("adds")
+    let arr=[]  
+    add_tocart.addEventListener("click",function(){
+         let ids= queries[3] 
+         let names= queries[0] 
+         let images= queries[1]
+         let prices= queries [2]
+         let quantities= select_quantity.value;
+         console.log(quantities)
+         arr.push({
+                id:ids,
+                name:names,
+                image:images,
+                price:prices,
+                quantity:Number(quantities)     
+         })
+         let arr2= []
+         for(let key in arr){
+                 arr2.push({
+                        id:ids,
+                        name:names,
+                        image:images,
+                        price:prices,
+                        quantity:Number(quantities)          
+                 })
+         }
+         localStorage.setItem("arr2",JSON.stringify(arr2));
+    })  
