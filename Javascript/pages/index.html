@@ -10,7 +10,6 @@
     <script src="../bootstrap/js/popper.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style/index.css"
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <style>
         a:hover{
@@ -29,19 +28,20 @@
 
  .myCart{
  width: 200px;
- height: 100px;
+ height: 50px;
  position: fixed;
- top:100px;
+ top:200px;
  bottom:0px;
  right:0px;
  left:auto;
+ border-radius: 20px;
  z-index: 300;
- background-color: chocolate;
+ background-color:#EEE8AA	;
 }
     </style>
 </head>
 <body>
-    <header>
+    
         <center>
 
         <ul class="list-unstyled my-5">
@@ -51,7 +51,7 @@
             <li class="list-inline-item"><a href="contact_us.html">Contact US</a></li>
         </ul>
     </center>
-    </header>
+    
     <div class="container" id="content">
 
     </div>  
@@ -66,15 +66,13 @@
 
     
     </div>  
-       <div class="myCart" id="myCart" onclick="tocart();">
-        <span id="myCart1"></span>
-        <span id="myCart2"></span>
-        
+       <div class="myCart" id="myCart">
+        <div  style="width: 20px; height: 20px;"  id="myCart1" class="float-left my-3 rounded-circle bg-warning ml-2" ><span class="mx-1" id="myCart1"></span></div>
+        <small><span id="myCart2" class="text-danger float-left ml-2 my-3"></span></small>
+        <span  class="float-right  my-3  mr-3" ><i class="fa fa-shopping-cart "></i> <small>Checkout</small></span>
        </div> 
 
  
-
-
 
     <script src="../javaScript/home.js"></script>
   

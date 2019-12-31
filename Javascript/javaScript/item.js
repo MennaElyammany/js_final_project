@@ -1,6 +1,5 @@
 "use strict"
-var queryString = decodeURIComponent(window.location.search); //parsing
-        //document.write(queryString)
+var queryString = decodeURIComponent(window.location.search);
         queryString = queryString.substring(1);
         var queries = queryString.split("&");
         console.log(queries);
@@ -18,18 +17,23 @@ var queryString = decodeURIComponent(window.location.search); //parsing
         let view_status = document.getElementById("id6")
         view_status.innerHTML = "Status: "+ "<span class='text-success'>"+queries[6]+"</span>" + "<br>"+"<small>"+"Available Quantity: "+queries[7]+"</small>"
         let view_price=document.getElementById("id7")
-        view_price.innerHTML = queries[2]
-        let select_quantity=document.getElementById("id8")
+        view_price.innerHTML = queries[2] +"     EUR"
+        let select_quantity=document.getElementById("quantity")
         select_quantity.setAttribute('max',queries[7])
 
     let add_tocart= document.getElementById("adds")
     let arr=[]  
     add_tocart.addEventListener("click",function(){
+           if(document.getElementById("quantity").value>queries[7]){
+                  alert( "Available quantity is"+queries[7]);
+           }
+           else{
          let ids= queries[3] 
          let names= queries[0] 
          let images= queries[1]
          let prices= queries [2]
-         let quantities= select_quantity.value;
+         let quantities= document.getElementById("quantity").value;
+         
          console.log(quantities)
          arr.push({
                 id:ids,
@@ -48,5 +52,10 @@ var queryString = decodeURIComponent(window.location.search); //parsing
                         quantity:Number(quantities)          
                  })
          }
-         localStorage.setItem("arr2",JSON.stringify(arr2));
-    })  
+         let existingEntries;
+         if(localStorage.getItem("allEntries")!=""){
+         existingEntries = JSON.parse(localStorage.getItem("allEntries"));}
+         else  existingEntries = [];
+         existingEntries.push(arr2);
+         localStorage.setItem("allEntries",JSON.stringify(existingEntries));
+    }})  

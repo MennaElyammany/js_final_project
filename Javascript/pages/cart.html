@@ -10,30 +10,102 @@
     <script src="../bootstrap/js/popper.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style/index.css"
     <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <style>
+         a:hover{
+             text-decoration: none;
+             color: black;
+         }
+         a{
+             color: black;
+         }
+          #pagination{
+             position:absolute;
+             right:10%;
+          
+
+         }
+         #bar{
+            position: relative;
+            right: -700px;
+         }
+         #checkout{
+            position: relative;
+            right: -1000px;
+         }
+         </style>
     </head>
     <body>
+         <center>
+
+               <ul class="list-unstyled my-5">
+       
+                   <li class="list-inline-item"><a href="index.html">Home</a></li>  <!-- on click redirect to home page-->
+                   <li class="list-inline-item"><a href="About.html">About US</a></li><!-- on click redirect to about us page-->
+                   <li class="list-inline-item"><a href="contact_us.html">Contact US</a></li>
+               </ul>
+           </center>
         <div class="container">
-           <div><center><h3>cart</h3></center></div>
+           <center><h1>CART</h1></center><br>
+
+           <div class="container">
+               <div class="row">
+                  <div class="col-4">
+                     <span class="text-muted">Product</span>
+                  </div>
+                  <div class="col-2">
+                      <span class="text-muted">Price</span>
+                   </div>
+                   <div class="col-4">
+                         <span class="text-muted">Quantity</span>
+                      </div>
+                      <div class="col-2">
+                            <span class="text-muted">Total</span>
+                         </div>
+               </div>
+            </div>
            <hr>
-         <center> <button  id="refresh"> Reset all quantity </button> </center>  
-           <ul id="parent">
+         
+         <div class="row">
+            <div class="col-4" id="item">
+                  
+            </div>
+            <div class="col-2" id="price">
+                  
+
+            </div>
+            <div class="col-4" id="quanity">
+                  
+
+            </div>
+            <div class="col-2" id="total">
+                
+
+            </div>
+            
+         </div>
+           
+           
+              <div id="total">
                
-           </ul> 
-           <div id="child">
-              <div>
-                <label>Totals:</label> 
+                   </div>
+                   <div id="bar">
+                    <label>Cart Totals:</label> 
+                <div class="progress" style="height: 1px;" >
+                     <div class="progress-bar  bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                   </div>
+                  </div>
               </div>
-              <hr>
-              <div id="sum_oftotals">
-                 
+              <div id="checkout">
+
               </div>
+              
+            
              
 
-             
-           </div>
+           
         </div>
+  
      <script src="../javaScript/cart.js"></script>
      </div>
     </body>
