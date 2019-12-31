@@ -2,6 +2,7 @@
 let sum=0;
 let tsum;
 let arr2 = JSON.parse(localStorage.getItem("arr2"));
+if( localStorage.getItem('allEntries')!=""){
 let get_datastorage= JSON.parse( localStorage.getItem('allEntries'));
     console.log(arr2);
 
@@ -177,5 +178,5 @@ function removeItem(id) {
       
     };
     
-    
+  }
   
