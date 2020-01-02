@@ -24,7 +24,7 @@ var queryString = decodeURIComponent(window.location.search);
     let add_tocart= document.getElementById("adds")
     let arr=[]  
     add_tocart.addEventListener("click",function(){
-           if(document.getElementById("quantity").value>queries[7]){
+           if(document.getElementById("quantity").value>Number(queries[7])){
                   alert( "Available quantity is"+queries[7]);
            }
            else{
@@ -42,20 +42,71 @@ var queryString = decodeURIComponent(window.location.search);
                 price:prices,
                 quantity:Number(quantities)     
          })
-         let arr2= []
-         for(let key in arr){
-                 arr2.push({
-                        id:ids,
-                        name:names,
-                        image:images,
-                        price:prices,
-                        quantity:Number(quantities)          
-                 })
-         }
+      
          let existingEntries;
-         if(localStorage.getItem("allEntries")!=""){
-         existingEntries = JSON.parse(localStorage.getItem("allEntries"));}
-         else  existingEntries = [];
+         if(localStorage.getItem("allEntries")!=null){
+         existingEntries = JSON.parse(localStorage.getItem("allEntries"));
+         console.log(existingEntries);
+         let test=0;
+         existingEntries.forEach(element => {
+              if(element.id==queries[3]){
+                 
+                 
+                     let arr2 = {
+                            id:ids,
+                            name:names,
+                            image:images,
+                            price:prices,
+                            quantity:Number(element.quantity) +Number(quantities),
+                            max:queries[7],
+                           
+                    };
+                    
+              existingEntries.splice(element,1);
+              console.log(existingEntries)
+              existingEntries.push(arr2);
+              localStorage.setItem("allEntries", JSON.stringify(existingEntries));
+              test=1;
+
+              }
+            
+          });
+          if(test==0){
+              let arr2= []
+              for(let key in arr){
+                      arr2.push({
+                             id:ids,
+                             name:names,
+                             image:images,
+                             price:prices,
+                             quantity:Number(quantities)         
+                      })
+              }
+              
+              existingEntries.push(arr2);
+              localStorage.setItem("allEntries", JSON.stringify(existingEntries));
+
+              
+          }
+      
+      
+  }
+
+       
+         else { existingEntries = [];
+              let arr2= []
+              for(let key in arr){
+                      arr2.push({
+                             id:ids,
+                             name:names,
+                             image:images,
+                             price:prices,
+                             quantity:Number(1)         
+                      })
+              }
          existingEntries.push(arr2);
          localStorage.setItem("allEntries",JSON.stringify(existingEntries));
-    }})  
+    }}
+    window.location.href="cart.html"
+} 
+    )  

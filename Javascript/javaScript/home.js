@@ -1,3 +1,4 @@
+let count=0;
 
 window.onload = function(){
     getCartItems: if(localStorage.getItem('allEntries') ==""){
@@ -20,8 +21,7 @@ window.onload = function(){
     }
 let productId=1;
 let current=0;
-let count=0;
-let total =0;
+let total=0;
 
 let getItems= (showItems,pageNo=1) => {
 document.getElementById('content').innerHTML="";
@@ -94,14 +94,16 @@ let showItems= (products) => {
         const btn=document.createElement('button');
         btn.setAttribute('class','btn-primary float-right');
         btn.appendChild(cart);
+        btn.setAttribute('id',productId)
+        cart.setAttribute('id',productId)
         footer.appendChild(btn);
         
         $(btn).on('click',function(ev){
 
         
             let dis= ev.target.parentNode;
-            console.log(dis)
-            dis.setAttribute("disabled",null);
+           
+          
              
             let num_counts= ++count;
             total+= products[i].Price; 
@@ -109,10 +111,59 @@ let showItems= (products) => {
             document.getElementById('myCart2').innerHTML=total;
             document.getElementById('myCart1').innerHTML=num_counts;
             let existingEntries;
-            if(localStorage.getItem("allEntries")!=""){
-            existingEntries = JSON.parse(localStorage.getItem("allEntries"));}
-            else  existingEntries = [];
-            let entry = {
+            let test=0;
+            if(localStorage.getItem("allEntries")!=null){
+             existingEntries= JSON.parse(localStorage.getItem("allEntries"));
+            
+            existingEntries.forEach(element => {
+                console.log(element.id)
+                console.log(products[ev.target.getAttribute('id')-1].ProductId)
+                if(element.id==products[ev.target.getAttribute('id')-1].ProductId){
+                   
+                    console.log(ev.target.getAttribute('id'))
+                    let entry = {
+                        id:products[i].ProductId,
+                        name:products[i].Name,
+                        image:products[i].ProductPicUrl,
+                        price:products[i].Price,
+                        quantity:element.quantity+1 ,
+                        max:products[i].Quantity,
+                       
+                };
+                existingEntries.splice(element,1);
+                console.log(existingEntries)
+                existingEntries.push(entry);
+                localStorage.setItem("allEntries", JSON.stringify(existingEntries));
+                test=1;
+
+                }
+              
+            });
+            if(test==0){
+                
+                    let entry = {
+                        id:products[i].ProductId,
+                        name:products[i].Name,
+                        image:products[i].ProductPicUrl,
+                        price:products[i].Price,
+                        quantity:Number(1) ,
+                        max:products[i].Quantity,
+                       
+                };
+                
+                existingEntries.push(entry);
+                localStorage.setItem("allEntries", JSON.stringify(existingEntries));
+
+                
+            }
+        
+        
+    }
+
+            else  
+            {
+                existingEntries = [];
+             let entry = {
                     id:products[i].ProductId,
                     name:products[i].Name,
                     image:products[i].ProductPicUrl,
@@ -123,10 +174,10 @@ let showItems= (products) => {
             };
             
             existingEntries.push(entry);
-            localStorage.setItem("allEntries", JSON.stringify(existingEntries));
+            localStorage.setItem("allEntries", JSON.stringify(existingEntries));}
                
         });
-             
+    
         const price=document.createElement('span');
         price.innerHTML=products[i].Price+" "+products[i].CurrencyCode;
         price.setAttribute('class','text-danger');

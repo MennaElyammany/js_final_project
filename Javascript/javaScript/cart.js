@@ -1,7 +1,8 @@
-
+let ups=1;
 let sum=0;
 let tsum;
 let arr2 = JSON.parse(localStorage.getItem("arr2"));
+localStorage.setItem('ups',ups)
 if( localStorage.getItem('allEntries')!=""){
 let get_datastorage= JSON.parse( localStorage.getItem('allEntries'));
     console.log(arr2);
@@ -27,14 +28,24 @@ for(let key in get_datastorage){
 console.log(get_datastorage);
 let Div0=document.createElement('div');
 Div0.setAttribute('id',get_datastorage[key].id);
+Div0.setAttribute('class','row');
 let Div= document.createElement('div');
-Div.setAttribute('class',get_datastorage[key].id)
+Div.setAttribute('class','col-4');
+Div.setAttribute('id',get_datastorage[key].id)
+Div0.appendChild(Div);
 let Div2= document.createElement('div');
-Div2.setAttribute('class',get_datastorage[key].id)
+Div2.setAttribute('id',get_datastorage[key].id)
+Div2.setAttribute('class','col-2');
+Div0.appendChild(Div2);
 let Div3= document.createElement('div');
-Div3.setAttribute('class',get_datastorage[key].id)
+Div3.setAttribute('id',get_datastorage[key].id)
+Div3.setAttribute('class','col-4');
+Div0.appendChild(Div3);
 let Div4= document.createElement('div');
-Div4.setAttribute('class',get_datastorage[key].id)
+Div4.setAttribute('id',get_datastorage[key].id)
+Div4.setAttribute('class','col-2');
+Div0.appendChild(Div4);
+document.getElementById('content').appendChild(Div0);
 let name= document.createElement('SPAN');
 let price=document.createElement('h5');
 let img1= document.createElement('img');
@@ -52,24 +63,28 @@ let span1= document.createElement('span');
 span1.setAttribute("id",get_datastorage[key].id)
 let array_sum=[]
 $(input1).change(function(ev){
-  
+  ev.target.downs
   var dis= ev.target;
- 
-    
-    let ups= ev.target.value;
     let price= ev.target.getAttribute('price')
     let new_price= parseInt(price)
+    let old_ups=JSON.parse( localStorage.getItem('ups'));
+    let new_ups=ev.target.value;
     let pas_span=document.getElementById(ev.target.getAttribute('id')+"sum_oftotals");
-     pas_span.innerHTML=Number(ups) * new_price* parseInt( get_datastorage[key].quantity);
+     pas_span.innerHTML=new_ups* new_price* parseInt( get_datastorage[key].quantity);
      totalit_arr.push(pas_span.innerHTML)
-     sum+=parseInt(sum_oftotals.innerHTML);
+    if(old_ups>new_ups){
+    sum=sum-(Number(old_ups)-Number(new_ups))* new_price;
+    console.log(sum)
+  
+    }
+    else{
+     sum=sum+((new_ups-old_ups)* new_price);
+     console.log(sum)
+    }
+     ups=ev.target.value;
+     localStorage.setItem('ups',ups)
      recalculateCart()
     
-    
-     
-  
-  
- 
 })
 
 
@@ -97,17 +112,17 @@ sum_oftotals.innerHTML=parseInt(get_datastorage[key].quantity)*parseInt(get_data
 sum+=parseInt(sum_oftotals.innerHTML);
 Div.appendChild(img1)
 Div.appendChild(name)
-document.getElementById('item').appendChild(Div);
+
 Div2.style.height="61.5px"
 
 Div2.appendChild(price);
-document.getElementById('price').appendChild(Div2);
+
 Div3.appendChild(input1);
-document.getElementById('quanity').appendChild(Div3);
+
 Div3.style.height="61.5px";
 Div4.appendChild(sum_oftotals);
 Div4.appendChild(btn1)
-document.getElementById('total').appendChild(Div4);
+
 Div4.style.height="61.5px"
 console.log(document.getElementById('total'));
 
@@ -117,22 +132,15 @@ $(refs).on("click",function(){
 })
 
 $(btn1).on("click",function(ev){
-let element=document.getElementById('item').firstChild
-  element.remove();
-  element=document.getElementById('price').firstChild
-  console.log(element)
-  element.remove();
-  element=document.getElementById('quanity').firstChild
-  console.log(element)
-  element.remove();
-  element=document.getElementById('total').firstChild
-  console.log(element)
-  element.remove();
-sum=sum-parseInt(document.getElementById('total').firstChild.firstChild.innerHTML)
+  console.log(ev.target.getAttribute('id'))
+  ev.currentTarget.parentNode.parentNode.remove();
+ let removedPrice= get_datastorage[key].price;
+ let removedQuantity= get_datastorage[key].quantity;
 
+sum=sum-(parseInt( removedPrice)*parseInt(removedQuantity));
 recalculateCart()
  
-
+removeItem(ev.target.getAttribute('id'))
 });
 
 }
